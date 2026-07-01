@@ -40,7 +40,6 @@
             padding: 20px;
             gap: 20px;
             background: #e4f0ed;
-            /* 与body保持一致 */
         }
 
         /* ================================================================
@@ -49,7 +48,7 @@
         .style-switcher {
             display: flex;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 6px;
@@ -119,6 +118,7 @@
             position: relative;
             background: #f0f8f5;
         }
+        /* 动态岛 — 纯黑，无任何文字 */
         .dynamic-island {
             position: absolute;
             top: 12px;
@@ -129,6 +129,7 @@
             background: #000;
             border-radius: 20px;
             z-index: 50;
+            pointer-events: none;
         }
 
         /* ================================================================
@@ -336,6 +337,9 @@
             height: 100%;
             border: none;
             display: block;
+            /* 防止重载弹出确认框 */
+            sandbox: allow-scripts allow-same-origin allow-forms;
+            loading: lazy;
         }
 
         .variety-fallback {
@@ -414,254 +418,188 @@
         }
 
         /* ================================================================
-           风格1: 浅青白 Mint White
+           三种风格 — 直接作用于 .app-container
            ================================================================ */
-        .style-mint .app-container {
+        .app-container.style-mint {
             background: #f0f8f5;
         }
-        .style-mint .home-hero .brand-line {
+        .app-container.style-spring {
+            background: #eef6f1;
+        }
+        .app-container.style-misty {
+            background: #edf3f5;
+        }
+
+        /* 各风格下的子元素颜色（依赖父级类） */
+        .app-container.style-mint .home-hero .brand-line {
             color: #5fa8a6;
         }
-        .style-mint .home-hero h1 {
-            color: #1c2e2a;
-        }
-        .style-mint .home-hero h1 .hl {
+        .app-container.style-mint .home-hero h1 .hl {
             color: #5fa8a6;
         }
-        .style-mint .home-hero .sub {
-            color: rgba(0, 0, 0, 0.3);
-        }
-        .style-mint .home-card {
+        .app-container.style-mint .home-card {
             background: #ffffff;
             border: 1px solid rgba(95, 168, 166, 0.08);
             box-shadow: 0 2px 16px rgba(95, 168, 166, 0.04);
         }
-        .style-mint .home-card:active {
+        .app-container.style-mint .home-card:active {
             background: #f0f7f5;
         }
-        .style-mint .home-card .card-glow {
+        .app-container.style-mint .home-card .card-glow {
             background: linear-gradient(90deg, transparent, rgba(95, 168, 166, 0.12), transparent);
         }
-        .style-mint .home-card .card-title {
-            color: #1c2e2a;
-        }
-        .style-mint .home-card .card-desc {
-            color: rgba(0, 0, 0, 0.3);
-        }
-        .style-mint .home-card .card-meta {
+        .app-container.style-mint .home-card .card-meta {
             color: #5fa8a6;
             background: rgba(95, 168, 166, 0.06);
         }
-        .style-mint .home-footer .copyright {
-            color: rgba(0, 0, 0, 0.15);
-        }
-        .style-mint .home-footer .copyright strong {
-            color: rgba(0, 0, 0, 0.25);
-        }
-        .style-mint .module-header {
+        .app-container.style-mint .module-header {
             background: rgba(240, 248, 245, 0.85);
         }
-        .style-mint .module-header .m-title {
-            color: #1c2e2a;
-        }
-        .style-mint .module-back {
+        .app-container.style-mint .module-back {
             background: rgba(0, 0, 0, 0.02);
             border-color: rgba(0, 0, 0, 0.04);
             color: #3a5a55;
         }
-        .style-mint .module-back:active {
+        .app-container.style-mint .module-back:active {
             background: rgba(0, 0, 0, 0.06);
         }
-        .style-mint .variety-fallback .link {
+        .app-container.style-mint .variety-fallback .link {
             background: #5fa8a6;
             color: #fff;
         }
-        .style-mint .module-iframe-wrap {
-            background: #fff;
-        }
-        .style-mint .bottom-nav {
+        .app-container.style-mint .bottom-nav {
             background: rgba(240, 248, 245, 0.85);
         }
-        .style-mint .bottom-nav .nav-btn {
+        .app-container.style-mint .bottom-nav .nav-btn {
             color: #3a5a55;
             background: rgba(95, 168, 166, 0.06);
         }
-        .style-mint .bottom-nav .nav-btn:active {
+        .app-container.style-mint .bottom-nav .nav-btn:active {
             background: rgba(95, 168, 166, 0.12);
         }
 
-        /* ================================================================
-           风格2: 水绿 Spring Green
-           ================================================================ */
-        .style-spring .app-container {
-            background: #eef6f1;
-        }
-        .style-spring .home-hero .brand-line {
+        /* 风格2：水绿 */
+        .app-container.style-spring .home-hero .brand-line {
             color: #6baa9e;
             font-family: "Playfair Display", serif;
             font-weight: 400;
             letter-spacing: 3px;
         }
-        .style-spring .home-hero h1 {
-            color: #1e332c;
+        .app-container.style-spring .home-hero h1 {
             font-family: "Playfair Display", serif;
             font-weight: 700;
         }
-        .style-spring .home-hero h1 .hl {
+        .app-container.style-spring .home-hero h1 .hl {
             color: #6baa9e;
         }
-        .style-spring .home-hero .sub {
+        .app-container.style-spring .home-hero .sub {
             color: rgba(30, 51, 44, 0.4);
             font-family: "Inter", sans-serif;
         }
-        .style-spring .home-card {
+        .app-container.style-spring .home-card {
             background: #ffffff;
             border: 1px solid rgba(107, 170, 158, 0.08);
             box-shadow: 0 4px 24px rgba(107, 170, 158, 0.04);
             border-radius: 24px;
         }
-        .style-spring .home-card:active {
+        .app-container.style-spring .home-card:active {
             background: #f0f8f3;
         }
-        .style-spring .home-card .card-glow {
+        .app-container.style-spring .home-card .card-glow {
             background: linear-gradient(90deg, transparent, rgba(107, 170, 158, 0.12), transparent);
         }
-        .style-spring .home-card .card-title {
-            color: #1e332c;
+        .app-container.style-spring .home-card .card-title {
             font-family: "Playfair Display", serif;
             font-weight: 600;
         }
-        .style-spring .home-card .card-desc {
-            color: rgba(30, 51, 44, 0.45);
+        .app-container.style-spring .home-card .card-desc {
             font-family: "Inter", sans-serif;
         }
-        .style-spring .home-card .card-meta {
+        .app-container.style-spring .home-card .card-meta {
             color: #6baa9e;
             background: rgba(107, 170, 158, 0.08);
             font-family: "Inter", sans-serif;
         }
-        .style-spring .home-footer .copyright {
-            color: rgba(30, 51, 44, 0.2);
-        }
-        .style-spring .home-footer .copyright strong {
-            color: rgba(30, 51, 44, 0.35);
-        }
-        .style-spring .module-header {
+        .app-container.style-spring .module-header {
             background: rgba(238, 246, 241, 0.88);
         }
-        .style-spring .module-header .m-title {
-            color: #1e332c;
+        .app-container.style-spring .module-header .m-title {
             font-family: "Playfair Display", serif;
             font-weight: 600;
         }
-        .style-spring .module-back {
+        .app-container.style-spring .module-back {
             background: rgba(30, 51, 44, 0.04);
             border-color: rgba(30, 51, 44, 0.06);
             color: #4a6e62;
         }
-        .style-spring .module-back:active {
+        .app-container.style-spring .module-back:active {
             background: rgba(30, 51, 44, 0.08);
         }
-        .style-spring .variety-fallback .link {
+        .app-container.style-spring .variety-fallback .link {
             background: #6baa9e;
             color: #fff;
         }
-        .style-spring .module-iframe-wrap {
-            background: #f5faf6;
-        }
-        .style-spring .module-header .m-sub {
-            color: rgba(30, 51, 44, 0.3);
-        }
-        .style-spring .bottom-nav {
+        .app-container.style-spring .bottom-nav {
             background: rgba(238, 246, 241, 0.85);
         }
-        .style-spring .bottom-nav .nav-btn {
+        .app-container.style-spring .bottom-nav .nav-btn {
             color: #4a6e62;
             background: rgba(107, 170, 158, 0.06);
         }
-        .style-spring .bottom-nav .nav-btn:active {
+        .app-container.style-spring .bottom-nav .nav-btn:active {
             background: rgba(107, 170, 158, 0.12);
         }
 
-        /* ================================================================
-           风格3: 灰蓝 Misty Blue
-           ================================================================ */
-        .style-misty .app-container {
-            background: #edf3f5;
-        }
-        .style-misty .home-hero .brand-line {
+        /* 风格3：灰蓝 */
+        .app-container.style-misty .home-hero .brand-line {
             color: #6e9bb5;
             letter-spacing: 3px;
         }
-        .style-misty .home-hero h1 {
-            color: #1d2f38;
-        }
-        .style-misty .home-hero h1 .hl {
+        .app-container.style-misty .home-hero h1 .hl {
             color: #6e9bb5;
         }
-        .style-misty .home-hero .sub {
+        .app-container.style-misty .home-hero .sub {
             color: rgba(29, 47, 56, 0.35);
         }
-        .style-misty .home-card {
+        .app-container.style-misty .home-card {
             background: #ffffff;
             border: 1px solid rgba(110, 155, 181, 0.06);
             box-shadow: 0 4px 24px rgba(110, 155, 181, 0.04);
             border-radius: 20px;
         }
-        .style-misty .home-card:active {
+        .app-container.style-misty .home-card:active {
             background: #eef4f7;
         }
-        .style-misty .home-card .card-glow {
+        .app-container.style-misty .home-card .card-glow {
             background: linear-gradient(90deg, transparent, rgba(110, 155, 181, 0.10), transparent);
         }
-        .style-misty .home-card .card-title {
-            color: #1d2f38;
-        }
-        .style-misty .home-card .card-desc {
-            color: rgba(29, 47, 56, 0.35);
-        }
-        .style-misty .home-card .card-meta {
+        .app-container.style-misty .home-card .card-meta {
             color: #6e9bb5;
             background: rgba(110, 155, 181, 0.06);
         }
-        .style-misty .home-footer .copyright {
-            color: rgba(29, 47, 56, 0.15);
-        }
-        .style-misty .home-footer .copyright strong {
-            color: rgba(29, 47, 56, 0.25);
-        }
-        .style-misty .module-header {
+        .app-container.style-misty .module-header {
             background: rgba(237, 243, 245, 0.85);
         }
-        .style-misty .module-header .m-title {
-            color: #1d2f38;
-        }
-        .style-misty .module-back {
+        .app-container.style-misty .module-back {
             background: rgba(29, 47, 56, 0.03);
             border-color: rgba(29, 47, 56, 0.05);
             color: #4a6d7e;
         }
-        .style-misty .module-back:active {
+        .app-container.style-misty .module-back:active {
             background: rgba(29, 47, 56, 0.08);
         }
-        .style-misty .variety-fallback .link {
+        .app-container.style-misty .variety-fallback .link {
             background: #6e9bb5;
             color: #fff;
         }
-        .style-misty .module-iframe-wrap {
-            background: #f5f8fa;
-        }
-        .style-misty .module-header .m-sub {
-            color: rgba(29, 47, 56, 0.25);
-        }
-        .style-misty .bottom-nav {
+        .app-container.style-misty .bottom-nav {
             background: rgba(237, 243, 245, 0.85);
         }
-        .style-misty .bottom-nav .nav-btn {
+        .app-container.style-misty .bottom-nav .nav-btn {
             color: #4a6d7e;
             background: rgba(110, 155, 181, 0.06);
         }
-        .style-misty .bottom-nav .nav-btn:active {
+        .app-container.style-misty .bottom-nav .nav-btn:active {
             background: rgba(110, 155, 181, 0.12);
         }
 
@@ -768,6 +706,7 @@
         <!-- 手机模拟器 -->
         <div class="phone-mockup">
             <div class="phone-screen">
+                <!-- 纯黑动态岛，无文字 -->
                 <div class="dynamic-island"></div>
 
                 <div class="app-container style-mint" id="appContainer">
@@ -890,7 +829,7 @@
 
     <script>
         // ================================================================
-        //  风格切换
+        //  风格切换（直接修改 appContainer 的类）
         // ================================================================
         const styleBtns = document.querySelectorAll('.style-switcher button');
         const appContainer = document.getElementById('appContainer');
@@ -899,8 +838,10 @@
             btn.addEventListener('click', () => {
                 styleBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+                // 移除所有风格类
+                appContainer.classList.remove('style-mint', 'style-spring', 'style-misty');
+                // 添加选中的风格类
                 const style = btn.dataset.style;
-                appContainer.className = 'app-container';
                 if (style === 'mint') appContainer.classList.add('style-mint');
                 else if (style === 'spring') appContainer.classList.add('style-spring');
                 else if (style === 'misty') appContainer.classList.add('style-misty');
@@ -908,7 +849,7 @@
         });
 
         // ================================================================
-        //  视图切换（支持两种返回方式）
+        //  视图切换（无重载，无弹窗）
         // ================================================================
         const views = {
             home: document.getElementById('viewHome'),
@@ -975,7 +916,7 @@
             }
         })();
 
-        console.log('山秋枫树园 · 浅天青色 · 三种风格');
+        console.log('山秋枫树园 · 浅天青色 · 三种风格 (已修复)');
         console.log('风格：浅青白 | 水绿色 | 灰蓝色');
         console.log('© 都江堰市山秋园艺苗圃');
     </script>
